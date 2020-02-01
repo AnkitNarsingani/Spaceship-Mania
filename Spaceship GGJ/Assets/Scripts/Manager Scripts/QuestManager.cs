@@ -36,6 +36,19 @@ public class QuestManager : MonoBehaviour
         }
 
         timer += Time.deltaTime;
+
+        if(Time.timeSinceLevelLoad > 60 && Time.timeSinceLevelLoad < 120)
+        {
+            timeBetweenQuests = 4;
+        }
+        if(Time.timeSinceLevelLoad > 120 && Time.timeSinceLevelLoad < 180)
+        {
+            timeBetweenQuests = 3;
+        }
+        if (Time.timeSinceLevelLoad > 180 && Time.timeSinceLevelLoad < 240)
+        {
+            timeBetweenQuests = 2;
+        }
     }
 
     public Quests GetNextQuest()

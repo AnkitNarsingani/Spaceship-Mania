@@ -23,7 +23,7 @@ public class CoordinationQuestsTapAndHold : Quests
         {
             base.Update();
 
-            if (firstPlayerEntered && secondPlayerEntered)
+            if (firstPlayerEntered || secondPlayerEntered)
             {
                 if (canTime)
                 {
@@ -37,7 +37,6 @@ public class CoordinationQuestsTapAndHold : Quests
                     canTime = true;
                     fillAmount = 1f;
                 }
-
 
                 if (Input.GetKey(firstPlayerActionKey) && !Input.GetKey(secondPlayerActionKey))
                 {
@@ -61,7 +60,7 @@ public class CoordinationQuestsTapAndHold : Quests
     }
 
     public override void Complete()
-    {
+    {    
         base.Complete();
         ResetQuest();
     }

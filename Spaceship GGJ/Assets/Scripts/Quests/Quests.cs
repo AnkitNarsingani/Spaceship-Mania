@@ -47,12 +47,12 @@ public class Quests : MonoBehaviour
 
     public virtual void Complete()
     {
-        Debug.Log("Complete", this);
         isActivated = false;
 
         QuestManager.questsActive--;
 
         exclamationPoint.SetActive(false);
+        fillAmount = 0;
         CompletionCircle.fillAmount = 0;
         CompletionCircle.gameObject.SetActive(false);
         brokenParticleEffect.SetActive(false);
