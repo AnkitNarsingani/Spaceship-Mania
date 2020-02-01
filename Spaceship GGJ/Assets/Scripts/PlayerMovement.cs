@@ -34,20 +34,20 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         if (Input.GetKey(UP))
-            direction.x = -1;
+            direction.z = -1;
         else if (Input.GetKey(DOWN))
+            direction.z = 1;
+        else
+            direction.z = 0;
+
+        if (Input.GetKey(RIGHT))
+            direction.x = -1;
+        else if (Input.GetKey(LEFT))
             direction.x = 1;
         else
             direction.x = 0;
+        transform.Translate(direction.normalized * speed * Time.deltaTime,Space.World);
 
-        if (Input.GetKey(RIGHT))
-            direction.z = 1;
-        else if (Input.GetKey(LEFT))
-            direction.z = -1;
-        else
-            direction.z = 0;
-        transform.Translate(direction * speed * Time.deltaTime,Space.World);
-        transform.position.Normalize();
     }
 
     private void RotatePlayer()

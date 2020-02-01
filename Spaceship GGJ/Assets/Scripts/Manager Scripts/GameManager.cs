@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
-    float health;
+    public float health=100;
 
     private void Awake()
     {
