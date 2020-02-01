@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
 
-    public float health=100;
+    public float Health=100;
 
+    CameraShake cameraShake;
     private void Awake()
     {
         if(Instance == null)
@@ -20,19 +21,36 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        cameraShake = FindObjectOfType<CameraShake>();
+    }
 
     public float getCurrentHealth()
     {
-        return health;
+        return Health;
     }
 
-    public void takeDamage(float DamageAmount)
+    public void TakeDamage(float DamageAmount)
     {
-        health -= DamageAmount;
+        Health -= DamageAmount;
+        if(Health<=0)
+        {
+            GameOver();
+        }
+        if(cameraShake)
+        cameraShake.ShakeIt();
+
     }
 
     public void heal(float HealAmount)
     {
-        health += HealAmount;
+        Health += HealAmount;
     }
+
+    void GameOver()
+    {
+        UIManager.Instance.SetUIState(UIManager.UIState.Menu);
+    }
+
 }
