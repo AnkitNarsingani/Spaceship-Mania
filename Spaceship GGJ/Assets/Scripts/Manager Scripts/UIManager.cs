@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-   public enum UIState { Menu, Running, Paused,GameOver }
+    public enum UIState { Menu, Running, Paused, GameOver }
 
     [SerializeField] GameObject MenuPanel;
     [SerializeField] GameObject RunningPanel;
     [SerializeField] GameObject PausedPanel;
     [SerializeField] GameObject GameOverPanel;
+
+    [Space]
+    [Space]
+
+    [SerializeField] Image healthBar;
 
     private void Awake()
     {
@@ -24,16 +29,18 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
-        SetUIState(UIState.Menu);
-
+        //SetUIState(UIState.Menu);
     }
 
-    // Update is called once per frame
-   
+    void Update()
+    {
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, GameManager.Instance.health / 100, Time.deltaTime * 7);
+    }
 
-   public void SetUIState(UIState uIState)
+    public void SetUIState(UIState uIState)
     {
         switch (uIState)
         {
@@ -69,6 +76,7 @@ public class UIManager : MonoBehaviour
         }
 
     }
+
 
     public void LoadLevel(string levelName)
     {

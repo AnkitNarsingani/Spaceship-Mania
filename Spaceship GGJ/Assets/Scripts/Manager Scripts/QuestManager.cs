@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class QuestManager : MonoBehaviour
 {
@@ -8,6 +8,8 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] private List<Quests> quests;
     [SerializeField] private float timeBetweenQuests = 5f;
+    [SerializeField] private GameEvent OnQuestActivation;
+    [SerializeField] private GameEvent OnQuestCompletion;
 
     [HideInInspector] public static float questsActive;
 
@@ -31,7 +33,14 @@ public class QuestManager : MonoBehaviour
         if (timer > timeBetweenQuests)
         {
             Quests q = GetNextQuest();
-            if (q != null) q.Activate();
+            if (q != null)
+            {
+                q.Activate();
+                q.OnQuestComplete = OnQuestCompletion;
+                CameraShaker.Instance.ShakeOnce(3.5f, 2.5f, 0.1f, 1f);
+                OnQuestActivation.Raise();
+            }
+            
             timer = 0f;
         }
 

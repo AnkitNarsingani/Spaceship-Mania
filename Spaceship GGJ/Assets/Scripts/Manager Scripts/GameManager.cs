@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : MonoBehaviour
+{
     public static GameManager Instance;
 
-    public float Health=100;
+    public float health = 100;
 
-    CameraShake cameraShake;
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -21,31 +18,26 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
-        cameraShake = FindObjectOfType<CameraShake>();
+
     }
 
-    public float getCurrentHealth()
+    public void TakeDamage(float damageAmount)
     {
-        return Health;
-    }
+        health -= damageAmount;
 
-    public void TakeDamage(float DamageAmount)
-    {
-        Health -= DamageAmount;
-        if(Health<=0)
-        {
+        if (health <= 0)
             GameOver();
-        }
-        if(cameraShake)
-        cameraShake.ShakeIt();
-
     }
 
-    public void heal(float HealAmount)
+    public void Heal(float healAmount)
     {
-        Health += HealAmount;
+        health += healAmount;
+
+        if (health > 100)
+            health = 100;
     }
 
     void GameOver()

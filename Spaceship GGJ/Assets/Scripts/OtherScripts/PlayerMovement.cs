@@ -32,8 +32,6 @@ public class PlayerMovement : MonoBehaviour
     {
         MovePlayer();
         RotatePlayer();
-        if (Input.GetKey(Action))
-            FindObjectOfType<CameraShake>().ShakeIt();
     }
 
     private void MovePlayer()

@@ -9,7 +9,7 @@ public class Quests : MonoBehaviour
     public bool isActivated { get; private set; }
 
     public GameEvent OnActivate;
-    public GameEvent OnComplete;
+    public GameEvent OnRepair;
 
     public Transform exclamationPointHolder;
     public GameObject exclamationPoint;
@@ -19,6 +19,8 @@ public class Quests : MonoBehaviour
     public Transform timerHolder;
     public Image CompletionCircle;
     protected float fillAmount = 0;
+
+    public GameEvent OnQuestComplete;
 
     void Start()
     {
@@ -58,6 +60,7 @@ public class Quests : MonoBehaviour
         brokenParticleEffect.SetActive(false);
         GetComponent<Collider>().enabled = false;
 
-        if (OnActivate != null) OnComplete.Raise();
+        if (OnRepair != null) OnRepair.Raise();
+        if (OnQuestComplete != null) OnQuestComplete.Raise();
     }
 }
