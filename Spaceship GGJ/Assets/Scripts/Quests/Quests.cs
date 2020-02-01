@@ -11,8 +11,8 @@ public class Quests : MonoBehaviour
     public GameEvent OnActivate;
     public GameEvent OnRepair;
 
-    public Transform exclamationPointHolder;
-    public GameObject exclamationPoint;
+    public Transform IconHolder;
+    public GameObject Icon;
 
     public GameObject brokenParticleEffect;
 
@@ -20,7 +20,7 @@ public class Quests : MonoBehaviour
     public Image CompletionCircle;
     protected float fillAmount = 0;
 
-    public GameEvent OnQuestComplete;
+    [HideInInspector] public GameEvent OnQuestComplete;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class Quests : MonoBehaviour
         if (isActivated)
         {
             CompletionCircle.fillAmount = Mathf.Lerp(CompletionCircle.fillAmount, fillAmount, Time.deltaTime * 7);
-            exclamationPoint.transform.position = Camera.main.WorldToScreenPoint(exclamationPointHolder.position);
+            Icon.transform.position = Camera.main.WorldToScreenPoint(IconHolder.position);
             CompletionCircle.transform.position = Camera.main.WorldToScreenPoint(timerHolder.position);
         }
     }
@@ -41,9 +41,9 @@ public class Quests : MonoBehaviour
     {
         isActivated = true;
         GetComponent<Collider>().enabled = true;
-        exclamationPoint.SetActive(true);
+        Icon.SetActive(true);
         CompletionCircle.gameObject.SetActive(true);
-        brokenParticleEffect.SetActive(true);
+        if (brokenParticleEffect != null) brokenParticleEffect.SetActive(true);
         if (OnActivate != null) OnActivate.Raise();
     }
 
@@ -53,11 +53,11 @@ public class Quests : MonoBehaviour
 
         QuestManager.questsActive--;
 
-        exclamationPoint.SetActive(false);
+        Icon.SetActive(false);
         fillAmount = 0;
         CompletionCircle.fillAmount = 0;
         CompletionCircle.gameObject.SetActive(false);
-        brokenParticleEffect.SetActive(false);
+        if (brokenParticleEffect != null)  brokenParticleEffect.SetActive(false);
         GetComponent<Collider>().enabled = false;
 
         if (OnRepair != null) OnRepair.Raise();
