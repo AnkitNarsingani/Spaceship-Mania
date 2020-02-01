@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    public enum UIState { Menu, Running, Paused, GameOver }
+    public enum UIState { Menu, Running,  GameOver }
 
     [SerializeField] GameObject MenuPanel;
     [SerializeField] GameObject RunningPanel;
-    [SerializeField] GameObject PausedPanel;
     [SerializeField] GameObject GameOverPanel;
 
     [Space]
@@ -48,27 +47,18 @@ public class UIManager : MonoBehaviour
                 MenuPanel.SetActive(true);
 
                 RunningPanel.SetActive(false);
-                PausedPanel.SetActive(false);
                 GameOverPanel.SetActive(false);
                 break;
             case UIState.Running:
                 RunningPanel.SetActive(true);
 
                 MenuPanel.SetActive(false);
-                PausedPanel.SetActive(false);
                 GameOverPanel.SetActive(false);
                 break;
-            case UIState.Paused:
-                PausedPanel.SetActive(true);
-
-                RunningPanel.SetActive(false);
-                MenuPanel.SetActive(false);
-                GameOverPanel.SetActive(false);
-                break;
+          
             case UIState.GameOver:
                 GameOverPanel.SetActive(true);
 
-                PausedPanel.SetActive(false);
                 RunningPanel.SetActive(false);
                 MenuPanel.SetActive(false);
                 break;
@@ -80,6 +70,7 @@ public class UIManager : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
+        SetUIState(UIState.Running);
         SceneManager.LoadScene(levelName);
     }
 
@@ -91,5 +82,12 @@ public class UIManager : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
+        SetUIState(UIState.Running);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+
     }
 }

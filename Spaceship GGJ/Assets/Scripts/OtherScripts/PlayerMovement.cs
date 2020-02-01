@@ -22,16 +22,26 @@ public class PlayerMovement : MonoBehaviour
     Vector3 direction;
     Rigidbody rigidBody;
     bool canBob = false;
+    bool canMove = true;
 
+
+    Animator anim;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        MovePlayer();
-        RotatePlayer();
+        if (canMove)
+        {
+            MovePlayer();
+            RotatePlayer();
+        }
+        if (Input.GetKey(Action))
+            anim.SetTrigger("isInteracting");
+
     }
 
     private void MovePlayer()
@@ -52,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         if (canBob)
             direction.y = transform.position.y + PlayerBobbing();
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        anim.SetBool("isMoving", Mathf.Abs(direction.x) != 0 || Mathf.Abs(direction.z) != 0);
 
     }
 
@@ -83,5 +94,10 @@ public class PlayerMovement : MonoBehaviour
     public void StopBobbing()
     {
         canBob = false;
+    }
+
+    public void SetMovement(bool bCanMove)
+    {
+        canMove = bCanMove;
     }
 }
