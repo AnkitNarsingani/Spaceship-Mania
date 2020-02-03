@@ -35,5 +35,6 @@ public class Shooting : MonoBehaviour {
         int random = Random.Range(0, spawnPoints.Count);
         Quaternion current= Quaternion.Euler(directionPool[Random.Range(0, directionPool.Count)]);
         Instantiate(bulletPrefab, spawnPoints[random].transform.position, current);
+        AudioManager.instance.Play("Beam");
     }
 }

@@ -48,15 +48,15 @@ public class QuestManager : MonoBehaviour
 
         if(Time.timeSinceLevelLoad > 60 && Time.timeSinceLevelLoad < 120)
         {
-            timeBetweenQuests = 4;
+            timeBetweenQuests = 2.5f;
         }
         if(Time.timeSinceLevelLoad > 120 && Time.timeSinceLevelLoad < 180)
         {
-            timeBetweenQuests = 3;
+            timeBetweenQuests = 2f;
         }
         if (Time.timeSinceLevelLoad > 180 && Time.timeSinceLevelLoad < 240)
         {
-            timeBetweenQuests = 2;
+            timeBetweenQuests = 1.5f;
         }
     }
 

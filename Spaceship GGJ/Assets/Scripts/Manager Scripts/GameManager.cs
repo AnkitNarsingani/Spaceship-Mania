@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        UIManager.Instance.SetUIState(UIManager.UIState.Menu);
+        UIManager.Instance.SetUIState(UIManager.UIState.GameOver);
     }
 
 }

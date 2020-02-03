@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace EZCameraShake
 {
@@ -63,8 +64,16 @@ namespace EZCameraShake
                 }
             }
 
+
             transform.localPosition = posAddShake + RestPositionOffset;
             transform.localEulerAngles = rotAddShake + RestRotationOffset;
+
+            transform.position = transform.position + BobCamera();
+        }
+
+        private Vector3 BobCamera()
+        {
+            return new Vector3(0, Mathf.Sin(Time.time * 20 / 10) * 0.5f, 0);
         }
 
         /// <summary>

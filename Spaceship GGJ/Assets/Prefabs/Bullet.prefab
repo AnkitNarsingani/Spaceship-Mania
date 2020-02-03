@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4169205430735974}
+  - component: {fileID: 108810131256925402}
   - component: {fileID: 54783493050934516}
   - component: {fileID: 114908273714728170}
-  - component: {fileID: 108810131256925402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33578911143847848}
   - component: {fileID: 136100456237452434}
   - component: {fileID: 23172456195776706}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294963199
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
