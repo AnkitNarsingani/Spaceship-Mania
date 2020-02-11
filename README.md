@@ -1,4 +1,6 @@
 # Shuttle Up!
+![alt text](https://raw.githubusercontent.com/AnkitNarsingani/Spaceship-Mania/master/screenshot_3.png)
+
  Global Game Jam 2020
  A co-op  game on a spaceship. Keep repairing your ship to survive for as long as possible. Made in 48 hours for Global Game Jam 2020 under the theme "repair".
 
